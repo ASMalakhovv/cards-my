@@ -1,0 +1,118 @@
+@import "../../../common/styles/sass/mixins";
+@import "../../../common/styles/sass/variables";
+
+
+.registerContainer {
+  background: #85a7ca;
+  @include heightWidth(80vh, 100%);
+  @include displayFlex(row, center, center);
+
+
+  .registerBlock {
+    @include displayFlex(column, flex-start, center);
+    @include heightWidth(540px, 413px);
+    background: white;
+    border-radius: 8px;
+    position: relative;
+
+    .progressBar {
+      height: 10px;
+      margin: 15px;
+    }
+
+    .header {
+      @include displayFlex(column, space-between, center);
+      font-family: $fontFamilyHeader;
+      margin-bottom: 55px;
+
+      h2, h1 {
+        margin: 0;
+      }
+
+      span {
+        width: 50px;
+        height: 2px;
+        background: black;
+        margin-top: 10px;
+      }
+    }
+
+    .errorPopUp {
+      h2 {
+        color: $colorError;
+      }
+
+      box-shadow: 0px 0px 7px -1px $colorError;
+    }
+
+    .messagePopUp {
+      h2 {
+        color: $colorMessage;
+      }
+
+      box-shadow: 0px 0px 7px -1px $colorMessage;
+    }
+
+    .inputBlock {
+      @include displayFlex(column, space-around, center);
+      @include heightWidth(200px, auto);
+      margin-bottom: 50px;
+
+      .inputContainer {
+        @include displayFlex(column);
+        font-family: $fontFamilyText;
+        color: rgba(0, 0, 0, 0.85);
+        position: relative;
+
+        .error {
+          border-bottom: 1px solid $colorError;
+        }
+
+        img {
+          position: absolute;
+          top: 20px;
+          left: 325px;
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+        }
+      }
+
+      input {
+        width: 347px;
+        height: 28px;
+        border: none;
+        border-bottom: 1px solid;
+        margin-top: 4px;
+        font-size: 16px;
+      }
+
+      input:focus {
+        outline: none;
+      }
+
+      input[type=password] {
+        font-weight: 800;
+      }
+    }
+
+    .control {
+      margin-bottom: 28px;
+      @include displayFlex(row, space-around, center);
+      @include heightWidth(auto, 347px);
+
+      .disabledLink {
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+
+/*style={{border:'solid 1px',position:"absolute",zIndex:"2",
+  height:280, width:250}}*/

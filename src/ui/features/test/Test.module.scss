@@ -1,0 +1,36 @@
+@import "../../common/styles/sass/mixins";
+
+.testBlock {
+  .customComponent {
+    @include heightWidth(50vh, 400px);
+    @include displayFlex(column, space-between, center);
+    margin: 0 auto;
+
+    .button {
+      @include heightWidth(80px, 100%);
+      @include displayFlex(row, space-between, center)
+
+    }
+
+    .checkBox {
+      @include heightWidth(80px, 100%);
+      @include displayFlex(row, space-between, center)
+
+    }
+
+    .range {
+      @include heightWidth(80px, 100%);
+      @include displayFlex(row, space-between, center)
+    }
+
+    .input {
+      @include heightWidth(80px, 100%);
+      @include displayFlex(row, space-between, center)
+    }
+
+    .select {
+      @include heightWidth(80px, 100%);
+      @include displayFlex(row, space-between, center)
+    }
+  }
+}

@@ -1,0 +1,82 @@
+
+.default {
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.61);
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    transition: all 250ms;
+
+}
+
+.default:hover:enabled,
+.default:focus:enabled {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.default:hover:enabled {
+    transform: translateY(-1px);
+}
+
+
+.default:active:enabled {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+.default:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #F0F0F1;
+    color: #666666;
+    opacity: 0.5;
+    cursor: default;
+}
+
+
+.red {
+    border: 1px solid red;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    color: red;
+    cursor: pointer;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    transition: all 250ms;
+}
+
+.red:hover:enabled,
+.red:focus:enabled {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    border-color: rgba(238, 81, 81, 0.24);
+    color: #ee5151;
+}
+.red:hover:enabled {
+    transform: translateY(-1px);
+}
+
+.red:active:enabled {
+    background-color: #F0F0F1;
+    border-color: #ee5151;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: #ee5151;
+    transform: translateY(0);
+}

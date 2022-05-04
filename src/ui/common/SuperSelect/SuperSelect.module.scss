@@ -1,0 +1,21 @@
+.selector {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 150px;
+  padding: 5px;
+  border: 2px solid;
+  border-radius: 4px;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+
+  &:hover {
+    opacity: 0.6;
+  }
+  option {
+    border: 2px solid;
+  }
+
+}
+

@@ -1,0 +1,17 @@
+@import '../common/styles/sass/mixins';
+
+.mainBlock {
+  @include heightWidth(100vh, 100%);
+  margin: 0 auto;
+
+
+  .header {
+    @include displayFlex();
+    @include heightWidth(180px, 100%);
+    box-shadow: 1px 2px 3px -1px #C8D1CC;
+  }
+
+  .pages {
+
+  }
+}

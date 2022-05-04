@@ -1,0 +1,22 @@
+@import "../../common/styles/sass/mixins";
+
+.errorBlock {
+
+  @include heightWidth(100vh, 100%);
+  @include displayFlex(row, center);
+
+  .errorContainer {
+    @include heightWidth(70vh, 95%);
+    @include displayFlex(column, flex-start, center);
+
+    h1 {
+      font-size: 120px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    p {
+      font-size: 40px;
+    }
+  }
+}
