@@ -50,7 +50,6 @@ export function Register() {
     }
 
     const sendRegistrationData = useCallback(() => {
-        debugger
         if (testValidation) {
             dispatch(registration(valueEmail, valueOnePassword))
         } else {

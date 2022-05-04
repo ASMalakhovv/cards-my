@@ -1,18 +1,136 @@
 @import "src/ui/common/styles/sass/mixins";
+@import "src/ui/common/styles/sass/variables";
 
 .loginBlock {
-  @include displayFlex();
+  @include displayFlex(row, center, center);
+  @include heightWidth(80vh, 100%);
+  background: $bgColorBlue;
 
   .loginContainer {
-    @include displayFlex(row, space-between);
-    @include heightWidth(auto, 400px);
+    @include displayFlex(column, flex-start, center);
+    @include heightWidth(600px, 413px);
+    background: white;
+    border-radius: 8px;
+    position: relative;
 
-    .navLink {
-      color: inherit;
+    .progressBar {
+      height: 10px;
+      margin: 5px 0;
     }
 
-    a:visited {
-      color: inherit;
+    .header {
+      @include displayFlex(column, space-between, center);
+      font-family: $fontFamilyHeader;
+      margin-bottom: 15px;
+
+      h2, h1 {
+        margin: 0;
+      }
+
+      span {
+        width: 50px;
+        height: 2px;
+        background: black;
+        margin-top: 10px;
+      }
+    }
+
+    .popUp {
+      h2 {
+        color: $colorError;
+      }
+
+      box-shadow: 0px 0px 7px -1px $colorError;
+    }
+
+    .inputBlock {
+      @include displayFlex(column, space-between, center);
+      @include heightWidth(120px, auto);
+      margin-bottom: 50px;
+
+      .inputContainer {
+        @include displayFlex(column);
+        font-family: $fontFamilyText;
+        color: rgba(0, 0, 0, 0.85);
+        position: relative;
+
+        label {
+          font-size: 14px;
+          color: $colorGrey;
+        }
+
+        .error {
+          border-bottom: 1px solid $colorError;
+        }
+
+        input {
+          width: 347px;
+          height: 28px;
+          border: none;
+          border-bottom: 1px solid $colorGrey;
+          margin-top: 4px;
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        input:focus {
+          outline: none;
+        }
+
+        input[type=password] {
+          font-weight: 800;
+        }
+
+        img {
+          position: absolute;
+          top: 20px;
+          left: 325px;
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+        }
+
+      }
+
+    }
+
+    .linkForgotPass {
+      @include displayFlex(row, right);
+      @include heightWidth(10px, 347px);
+      padding-right: 10px;
+      margin-bottom: 90px;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+
+    .control {
+      @include displayFlex(column, space-around, center);
+      @include heightWidth(auto, 347px);
+
+      button {
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $colorGrey;
+        font-weight: 600;
+      }
+
+      .disabledLink {
+        pointer-events: none;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        font-family: $fontFamilyHeader;
+        font-size: 18px;
+      }
     }
 
   }
