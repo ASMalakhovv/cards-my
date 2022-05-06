@@ -90,7 +90,6 @@ export const Login = React.memo(() => {
                             <input type='text' value={valueEmail}
                                    onChange={onChangeInput}
                                    data-input='email'
-                                   autoComplete="off"
                                    className={classNameInput}
                             />
                         </div>
@@ -99,7 +98,6 @@ export const Login = React.memo(() => {
                             <input type={type} value={valuePassword}
                                    onChange={onChangeInput}
                                    data-input='onePassword'
-                                   autoComplete="off"
                                    required
                                    className={classNameInput}
                             />

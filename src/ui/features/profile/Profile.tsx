@@ -1,17 +1,19 @@
 import s from './Profile.module.scss'
 import SuperButton from "../../common/SuperButton/SuperButton";
-import {ProgressBar} from "../../components/ProgressBar/ProgressBar";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {useAppSelector} from "../../../hooks/useReactRedux";
 
 export function Profile() {
-    //реакт-редакс
+    debugger    //реакт-редакс
     const nicknameState = useAppSelector(state => state.profile.name)
     const emailState = useAppSelector(state => state.profile.email)
     //хуки
-    const [nickname, setNickname] = useState<string>(nicknameState ? nicknameState : "")
-    const [email, setEmail] = useState<string>(emailState ? emailState : "")
-
+    const [nickname, setNickname] = useState<string | null>(nicknameState ? nicknameState : "")
+    const [email, setEmail] = useState<string | null>(emailState ? emailState : "")
+    useEffect(() => {
+        setEmail(emailState)
+        setNickname(nicknameState)
+    }, [nicknameState, emailState])
     //колбэки
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
@@ -39,7 +41,7 @@ export function Profile() {
                 <div className={s.inputBlock}>
                     <div className={s.inputContainer}>
                         <label>Nickname</label>
-                        <input type='text' value={nickname}
+                        <input type='text' value={nickname  || ""}
                                onChange={onChangeInput}
                                data-input='nickname'
                                autoComplete="off"
@@ -48,8 +50,8 @@ export function Profile() {
                     </div>
                     <div className={s.inputContainer}>
                         <label>Email</label>
-                        <input type='email' value={email}
-                            //onChange={onChangeInput}
+                        <input type='email' value={email || ""}
+                               onChange={onChangeInput}
                                data-input='email'
                                autoComplete="off"
                             //      className={classNameInput}
