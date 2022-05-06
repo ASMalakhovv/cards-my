@@ -1,4 +1,4 @@
-export const useValidationPassword = (passwordOne: string, passwordTwo: string, email: string): [error: string | null, test: boolean] => {
+export const useValidationPassword = (passwordOne: string, email: string, passwordTwo?: string): [error: string | null, test: boolean] => {
     const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     let error: string | null = null
     let test: boolean = true
@@ -10,7 +10,7 @@ export const useValidationPassword = (passwordOne: string, passwordTwo: string, 
         error = "Password must be more than 7 characters"
         test = false
         return [error, test]
-    } else if (passwordOne !== passwordTwo) {
+    } else if (passwordTwo !== undefined && passwordOne !== passwordTwo) {
         error = "passwords do not match"
         test = false
         return [error, test]

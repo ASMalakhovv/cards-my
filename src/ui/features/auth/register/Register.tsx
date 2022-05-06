@@ -11,13 +11,13 @@ import eye from '../../../assets/image/eye.png'
 import {useValidationPassword} from "../../../../hooks/useValidationPassword";
 
 export function Register() {
+    //хуки
     const [valueEmail, setValueEmail] = useState("")
     const [valueOnePassword, setValueOnePassword] = useState("")
     const [valueTwoPassword, setValueTwoPassword] = useState("")
     const [type, setType] = useState("password")
-    const [errorValidation, testValidation] = useValidationPassword(valueOnePassword, valueTwoPassword,valueEmail)
-    console.log(testValidation)
-
+    const [errorValidation, testValidation] = useValidationPassword(valueOnePassword, valueEmail, valueTwoPassword)
+    const navigate = useNavigate()
     useEffect(() => {
         return () => {
             dispatch(setErrorRegistration(null))
@@ -25,17 +25,18 @@ export function Register() {
         }
     }, [])
 
+    //реакт-редакс
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
     const error: null | string = useAppSelector(state => state.registration.error)
     const message: null | string = useAppSelector(state => state.registration.message)
     const isLoading: boolean = useAppSelector(state => state.registration.isLoading)
-    console.log(error)
+
+    //вычисляем стили
     const classNameLink = message || error ? `${s.disabledLink}` : ''
     const classNameInput = error ? `${s.error}` : ''
     const classNamePopUp = error ? `${s.errorPopUp}` : `${s.messagePopUp}`
 
-
+    //колбэки
     const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
             const type: string = e.currentTarget.dataset.input
@@ -48,15 +49,13 @@ export function Register() {
             }
         }
     }
-
     const sendRegistrationData = useCallback(() => {
         if (testValidation) {
             dispatch(registration(valueEmail, valueOnePassword))
         } else {
             dispatch(setErrorRegistration(errorValidation))
         }
-    }, [valueEmail, valueOnePassword,testValidation,errorValidation])
-
+    }, [valueEmail, valueOnePassword, testValidation, errorValidation])
     const closePopUpWindow = useCallback(() => {
         error && dispatch(setErrorRegistration(null))
         if (message) {
@@ -79,24 +78,28 @@ export function Register() {
                 </div>
 
                 <header className={s.header}>
-                    <h2>it-incubator</h2>
-                    <h1>Sign Up</h1>
+                    <h1>it-incubator</h1>
+                    <h2>Sign Up</h2>
                     <span></span>
                 </header>
 
-                {error && <PopUpWindowRegistration value={error} callback={closePopUpWindow}
-                                                   className={classNamePopUp}
-                                                   header='Error'
-                />}
-                {message && <PopUpWindowRegistration value={message} callback={closePopUpWindow}
-                                                     className={classNamePopUp}
-                                                     header='Message'
-                />}
+                <div className={s.popUpContainer}>
+                    <div className={s.popUp}>
+                        {error && <PopUpWindowRegistration value={error} callback={closePopUpWindow}
+                                                           className={classNamePopUp}
+                                                           header='Error'
+                        />}
+                        {message && <PopUpWindowRegistration value={message} callback={closePopUpWindow}
+                                                             className={classNamePopUp}
+                                                             header='Message'
+                        />}
+                    </div>
+                </div>
 
                 <div className={s.inputBlock}>
                     <div className={s.inputContainer}>
                         <label>Email</label>
-                        <input type='text' value={valueEmail}
+                        <input type='email' value={valueEmail}
                                onChange={onChangeInput}
                                data-input='email'
                                autoComplete="off"

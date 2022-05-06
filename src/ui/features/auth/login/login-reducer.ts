@@ -1,4 +1,6 @@
-
+import {AppThunk} from "../../../../bll/store";
+import {authAPI} from "../../../../dal/api";
+import {setProfile} from "../../profile/profile-reducer";
 
 
 const initState = {
@@ -31,6 +33,24 @@ export const setErrorLogin = (payload: string | null) => {
         type: 'login/SET-ERROR',
         payload
     } as const
+}
+
+//THUNK-CREATOR
+export const login = (email: string, password: string): AppThunk<void> => async dispatch => {
+    try {
+        dispatch(changeIsLoadingLogin(true))
+        let res = await authAPI.login(email, password)
+        res && dispatch(setProfile(res))
+    } catch (err: Error | unknown) {
+        if (err instanceof Error) {
+            dispatch(setErrorLogin(err.message))
+        } else {
+            dispatch(setErrorLogin('An error has occurred'))
+            console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
+        }
+    } finally {
+        dispatch(changeIsLoadingLogin(false))
+    }
 }
 
 //TYPES

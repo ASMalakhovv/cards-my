@@ -1,0 +1,89 @@
+@import "src/ui/common/styles/sass/mixins";
+@import "src/ui/common/styles/sass/variables";
+
+.profileBlock {
+  @include displayFlex(row, center, center);
+  @include heightWidth(80vh, 100%);
+  background: $bgColorBlue;
+
+  .profileContainer {
+    @include displayFlex(column, flex-start, center);
+    @include heightWidth(540px, 413px);
+    background: white;
+    border-radius: 8px;
+
+    .progressBar {
+      height: 10px;
+      margin: 5px 0;
+    }
+
+    .header {
+      @include displayFlex(column, space-between, center);
+      font-family: $fontFamilyHeader;
+      margin: 5px 0;
+
+      h1 {
+        margin: 0;
+      }
+
+      span {
+        width: 50px;
+        height: 2px;
+        background: black;
+        margin-top: 10px;
+      }
+    }
+
+    .imgProfile {
+      margin: 10px 0 30px;
+
+      img {
+        height: 96px;
+        width: 96px;
+        background: #d3c3bc;
+        border-radius: 50%;
+      }
+    }
+
+    .inputBlock {
+      @include displayFlex(column, space-between, center);
+      @include heightWidth(120px, auto);
+      margin-bottom: 80px;
+
+      .inputContainer {
+        @include displayFlex(column);
+        font-family: $fontFamilyText;
+        color: rgba(0, 0, 0, 0.85);
+        position: relative;
+
+        label {
+          font-size: 14px;
+          color: $colorGrey;
+        }
+
+        input {
+          width: 347px;
+          height: 28px;
+          border: none;
+          border-bottom: 1px solid $colorGrey;
+          margin-top: 4px;
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        input:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .control {
+      @include displayFlex(row, space-around, center);
+      @include heightWidth(auto, 347px);
+
+      .button {
+        width: 96px;
+      }
+    }
+  }
+}

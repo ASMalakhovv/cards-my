@@ -5,12 +5,13 @@ import {registrationReducer, RegistrationAction} from "../ui/features/auth/regis
 import {LoginAction, loginReducer} from "../ui/features/auth/login/login-reducer";
 import {PasswordNewAction, passwordNewReducer} from "../ui/features/auth/password-new/passwordNew-reducer";
 import {PasswordResetAction, passwordResetReducer} from "../ui/features/auth/password-reset/passwordReset-reducer";
+import {AppAction, appReducer} from "../app/app-reducer";
 
 
 //TYPE
 export type AppStoreType = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<AppStoreType, unknown, ActionType>;
-export type ActionType = LoginAction | PasswordNewAction |
+export type ActionType = AppAction | LoginAction | PasswordNewAction |
     PasswordResetAction | ProfileAction | RegistrationAction
 export type AppThunk<ReturnType> = ThunkAction<ReturnType,
     AppStoreType,
@@ -20,6 +21,7 @@ export type AppThunk<ReturnType> = ThunkAction<ReturnType,
 
 //STATE
 const reducers = combineReducers({
+    cardsApp: appReducer,
     login: loginReducer,
     passwordNew: passwordNewReducer,
     passwordReset: passwordResetReducer,

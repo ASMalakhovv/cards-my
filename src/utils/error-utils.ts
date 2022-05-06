@@ -17,7 +17,7 @@ export const handlingError = (dispatch: Dispatch, err: Error | unknown) => {
     if (err instanceof Error) {
         dispatch(setErrorRegistration(err.message))
     } else {
-        //dispatch(setAppError('An error has occurred'))
+        dispatch(setErrorRegistration('An error has occurred'))
         console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
     }
 }

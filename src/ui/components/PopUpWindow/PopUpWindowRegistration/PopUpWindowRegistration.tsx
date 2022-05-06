@@ -13,7 +13,7 @@ const PopUpWindowRegistration = ({value, callback, className, header, ...props}:
             <div className={s.popUpMain}>
                 <h2>{header}</h2>
                 <p>{value}</p>
-                <span onClick={callback} className={s.closeSpan}>close</span>
+                <span onClick={callback} className={s.closeSpan}>&#10008;</span>
             </div>
         </div>
     );

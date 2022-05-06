@@ -3,10 +3,10 @@
 
 
 .registerContainer {
-  background: #85a7ca;
+  background: $bgColorBlue;
   @include heightWidth(80vh, 100%);
   @include displayFlex(row, center, center);
-
+  position: relative;
 
   .registerBlock {
     @include displayFlex(column, flex-start, center);
@@ -17,13 +17,13 @@
 
     .progressBar {
       height: 10px;
-      margin: 15px;
+      margin: 5px 0;
     }
 
     .header {
       @include displayFlex(column, space-between, center);
       font-family: $fontFamilyHeader;
-      margin-bottom: 55px;
+      margin-bottom: 15px;
 
       h2, h1 {
         margin: 0;
@@ -37,32 +37,44 @@
       }
     }
 
-    .errorPopUp {
-      h2 {
-        color: $colorError;
+    .popUpContainer {
+      .popUp {
+        position: absolute;
+        z-index: 1;
+        width: 350px;
+        top: 2%;
+        left: 7.6%;
+
+
+        .errorPopUp {
+          box-shadow: 0px 4px 7px -1px $colorError;
+          background: $colorError;
+          border-radius: 8px;
+        }
+
+        .messagePopUp {
+          box-shadow: 0px 4px 7px -1px $colorMessage;
+          background: rgb(167, 221, 255);
+          border-radius: 8px;
+        }
       }
-
-      box-shadow: 0px 0px 7px -1px $colorError;
-    }
-
-    .messagePopUp {
-      h2 {
-        color: $colorMessage;
-      }
-
-      box-shadow: 0px 0px 7px -1px $colorMessage;
     }
 
     .inputBlock {
       @include displayFlex(column, space-around, center);
       @include heightWidth(200px, auto);
-      margin-bottom: 50px;
+      margin-bottom: 80px;
 
       .inputContainer {
         @include displayFlex(column);
         font-family: $fontFamilyText;
         color: rgba(0, 0, 0, 0.85);
         position: relative;
+
+        label {
+          font-size: 14px;
+          color: $colorGrey;
+        }
 
         .error {
           border-bottom: 1px solid $colorError;
@@ -82,9 +94,10 @@
         width: 347px;
         height: 28px;
         border: none;
-        border-bottom: 1px solid;
+        border-bottom: 1px solid $colorGrey;
         margin-top: 4px;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: 500;
       }
 
       input:focus {
@@ -107,7 +120,10 @@
 
       a {
         color: inherit;
-        font-style: italic;
+        text-decoration: none;
+        font-family: $fontFamilyHeader;
+        font-size: 18px;
+        letter-spacing: 0.1px;
       }
     }
   }

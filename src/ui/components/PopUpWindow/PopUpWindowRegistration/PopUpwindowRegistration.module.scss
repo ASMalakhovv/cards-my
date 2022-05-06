@@ -3,14 +3,6 @@
 
 .popUpBlock {
   @include displayFlex(row, center);
-  position: absolute;
-  z-index: 1;
-  height: 150px;
-  width: 350px;
-  top: 5%;
-  left: 8%;
-  background: #ffffff;
-  border-radius: 8px;
 
   .popUpMain {
     @include displayFlex(column, space-around, center);
@@ -18,20 +10,19 @@
     .closeSpan {
       position: absolute;
       top: 8px;
-      left: 300px;
+      left: 318px;
       font-size: 18px;
-      text-decoration: underline;
       cursor: pointer;
-      font-style: italic;
     }
   }
 
   h2 {
     font-family: $fontFamilyHeader;
-    margin: 10px 0;
+    margin: 0;
   }
 
   p {
     font-family: $fontFamilyText;
+    margin: 0;
   }
 }
