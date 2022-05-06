@@ -28,7 +28,7 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 }
 
 //ACTION-CREATOR
-export const setProfile = (payload: ProfileResponse) => {
+export const setProfile = (payload: ProfileResponse | InitStateType) => {
     return {
         type: 'profile/SET-PROFILE',
         payload

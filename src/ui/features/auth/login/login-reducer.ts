@@ -52,6 +52,35 @@ export const login = (email: string, password: string): AppThunk<void> => async 
         dispatch(changeIsLoadingLogin(false))
     }
 }
+export const logOut = (): AppThunk<void> => async dispatch => {
+    const profile = {
+        _id: null,
+        email: null,
+        rememberMe: false,
+        isAdmin: false,
+        name: null,
+        verified: false,
+        publicCardPacksCount: null,
+        created: null,
+        updated: null,
+        __v: null,
+        token: null,
+        tokenDeathTime: null,
+    }
+    try {
+        let res = await authAPI.logOut()
+        dispatch(setProfile(profile))
+    } catch (err: Error | unknown) {
+        if (err instanceof Error) {
+            dispatch(setErrorLogin(err.message))
+        } else {
+            dispatch(setErrorLogin('An error has occurred'))
+            console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
+        }
+    } finally {
+        dispatch(changeIsLoadingLogin(false))
+    }
+}
 
 //TYPES
 export type InitStateType = typeof initState

@@ -22,6 +22,10 @@ export const authAPI = {
             ('auth/login', {email: email, password: password, rememberMe: false})
             .then(res => res.data)
             .catch((err) => throwNewError(err))
+    },
+    logOut(){
+        return instance
+            .delete('auth/me')
     }
 }
 
