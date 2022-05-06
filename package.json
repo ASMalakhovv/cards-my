@@ -2,7 +2,7 @@
   "name": "cards-friday",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ASMalakhovv.github.io/cards-friday",
+  "homepage": "https://ASMalakhovv.github.io/cards-my",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
