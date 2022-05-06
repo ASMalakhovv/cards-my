@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/cards-my/static/css/main.fa702269.css",
+    "main.js": "/cards-my/static/js/main.192f6dd9.js",
+    "static/js/787.587502bc.chunk.js": "/cards-my/static/js/787.587502bc.chunk.js",
+    "static/media/initialization.gif": "/cards-my/static/media/initialization.911faae36b2122196957.gif",
+    "static/media/progress bar.gif": "/cards-my/static/media/progress bar.77a283aee3ed3fa8df84.gif",
+    "index.html": "/cards-my/index.html",
+    "static/media/pen_icon.svg": "/cards-my/static/media/pen_icon.0ea602c07c7c58132fe4ff0b85ee4ee8.svg",
+    "static/media/select_icon.svg": "/cards-my/static/media/select_icon.11da934fce4e9dcc4c82560ed70e451e.svg",
+    "main.fa702269.css.map": "/cards-my/static/css/main.fa702269.css.map",
+    "main.192f6dd9.js.map": "/cards-my/static/js/main.192f6dd9.js.map",
+    "787.587502bc.chunk.js.map": "/cards-my/static/js/787.587502bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa702269.css",
+    "static/js/main.192f6dd9.js"
+  ]
+}
