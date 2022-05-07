@@ -43,7 +43,7 @@ export const initializationApp = (profileID: string | null): AppThunk<void> => a
             dispatch(setProfile(res.data))
         }
     } catch (err: Error | unknown) {
-        console.log('авторизуйтесь')
+        //console.log('авторизуйтесь')
         //handlingError(dispatch, err)
     } finally {
         dispatch(initializationSuccess())

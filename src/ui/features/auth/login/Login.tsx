@@ -37,7 +37,7 @@ export const Login = React.memo(() => {
     const closePopUpWindow = useCallback(() => {
         error && dispatch(setErrorLogin(null))
     }, [error])
-    const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
             const type: string = e.currentTarget.dataset.input
             if (type === 'email') {
@@ -46,11 +46,11 @@ export const Login = React.memo(() => {
                 setValuePassword(e.currentTarget.value)
             }
         }
-    }
-    const changeTypeForInput = () => {
+    }, [])
+    const changeTypeForInput = useCallback(() => {
         const computedType = type === 'text' ? 'password' : 'text'
         setType(computedType)
-    }
+    }, [type])
     const sendLoginData = useCallback(() => {
         if (test) {
             dispatch(login(valueEmail, valuePassword))
@@ -98,7 +98,6 @@ export const Login = React.memo(() => {
                             <input type={type} value={valuePassword}
                                    onChange={onChangeInput}
                                    data-input='onePassword'
-                                   required
                                    className={classNameInput}
                             />
                             <img src={eye} onClick={changeTypeForInput}/>
