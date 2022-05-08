@@ -3,8 +3,8 @@
 
 .profileBlock {
   @include displayFlex(row, center, center);
-  @include heightWidth(80vh, 100%);
-  background: $bgColorBlue;
+  //@include heightWidth(80vh, 100%);
+  //background: $bgColorBlue;
 
   .profileContainer {
     @include displayFlex(column, flex-start, center);

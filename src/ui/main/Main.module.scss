@@ -1,9 +1,7 @@
 @import '../common/styles/sass/mixins';
+@import '../common/styles/sass/variables';
 
 .mainBlock {
-  @include heightWidth(100vh, 100%);
-  margin: 0 auto;
-
 
   .header {
     @include displayFlex();
@@ -12,6 +10,9 @@
   }
 
   .pages {
-
+    @include displayFlex(row,center,flex-start);
+    @include heightWidth(80.8vh,100%);
+    background:$bgColorBlue;
+    position: relative;
   }
 }

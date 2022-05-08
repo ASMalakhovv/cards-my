@@ -1,6 +1,8 @@
-import {AppThunk} from "../../../../bll/store";
+import {AppStoreType, AppThunk, AppThunkDispatch} from "../../../../bll/store";
 import {authAPI} from "../../../../dal/api";
 import {setProfile} from "../../profile/profile-reducer";
+import {changeIsLoading, saveErrorApp} from "../../../../app/app-reducer";
+import {useAppSelector} from "../../../../hooks/useReactRedux";
 
 
 const initState = {
@@ -10,7 +12,7 @@ const initState = {
 
 export const loginReducer = (state: InitStateType = initState, action: LoginAction): InitStateType => {
     switch (action.type) {
-        case "login/SET-ERROR": {
+        case 'login/SET-ERROR': {
             return {...state, error: action.payload}
         }
         case 'login/CHANGE-IS-LOADING': {
@@ -41,9 +43,11 @@ export const login = (email: string, password: string): AppThunk<void> => async 
         dispatch(changeIsLoadingLogin(true))
         let res = await authAPI.login(email, password)
         res && dispatch(setProfile(res))
-    } catch (err: Error | unknown) {
+    } catch (err) {
         if (err instanceof Error) {
             dispatch(setErrorLogin(err.message))
+        } else if (typeof err === "string") {
+            dispatch(setErrorLogin(err))
         } else {
             dispatch(setErrorLogin('An error has occurred'))
             console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
@@ -52,7 +56,7 @@ export const login = (email: string, password: string): AppThunk<void> => async 
         dispatch(changeIsLoadingLogin(false))
     }
 }
-export const logOut = (): AppThunk<void> => async dispatch => {
+export const logOut = (): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
     const profile = {
         _id: null,
         email: null,
@@ -68,17 +72,20 @@ export const logOut = (): AppThunk<void> => async dispatch => {
         tokenDeathTime: null,
     }
     try {
+        dispatch(changeIsLoading(true))
         let res = await authAPI.logOut()
         dispatch(setProfile(profile))
-    } catch (err: Error | unknown) {
-        if (err instanceof Error) {
-            dispatch(setErrorLogin(err.message))
-        } else {
-            dispatch(setErrorLogin('An error has occurred'))
-            console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
-        }
+    } catch (err) {
+            if (err instanceof Error) {
+                dispatch(saveErrorApp(err.message))
+            } else if (typeof err === "string") {
+                dispatch(saveErrorApp(err))
+            } else {
+                dispatch(saveErrorApp('An error has occurred'))
+                console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
+            }
     } finally {
-        dispatch(changeIsLoadingLogin(false))
+        dispatch(changeIsLoading(false))
     }
 }
 

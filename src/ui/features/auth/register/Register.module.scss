@@ -3,9 +3,6 @@
 
 
 .registerContainer {
-  background: $bgColorBlue;
-  @include heightWidth(80vh, 100%);
-  @include displayFlex(row, center, center);
   position: relative;
 
   .registerBlock {

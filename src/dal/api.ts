@@ -1,8 +1,9 @@
 import axios, {AxiosResponse} from "axios";
-import {throwNewError} from "../utils/error-utils";
+import {createPromiseRej, throwNewError} from "../utils/error-utils";
 
 const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
+    //baseURL: 'https://neko-back.herokuapp.com/2.0',
+    baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 });
 
@@ -16,23 +17,26 @@ export const authAPI = {
                 throwNewError(err)
             })
     },
-    login(email: string, password: string) {
+    login(email: string, password: string): Promise<void | ProfileResponse> {
         return instance
             .post<ProfileResponse, AxiosResponse<ProfileResponse>, LoginRequestData>
             ('auth/login', {email: email, password: password, rememberMe: false})
             .then(res => res.data)
-            .catch((err) => throwNewError(err))
+            .catch((err) => createPromiseRej(err))
     },
-    logOut(){
+    logOut() {
         return instance
-            .delete('auth/me')
+            .delete<LogOutResponse, AxiosResponse<LogOutResponse>>('auth/me')
     }
 }
 
 export const cardsAPI = {
-    authMe() {
+    authMe(): Promise<void | ProfileResponse> {
         return instance
-            .post<ProfileResponse, AxiosResponse<ProfileResponse>, {}>('auth/me', {})
+            .post<ProfileResponse, AxiosResponse<ProfileResponse>, {}>
+            ('auth/me', {})
+            .then(res => res.data)
+            .catch(err => createPromiseRej(err))
     }
 }
 
@@ -68,10 +72,12 @@ export type ProfileResponse = {
     token: string
     tokenDeathTime: number
 }
-
 export type DeviceTokens = {
     _id: string
     device: string
     token: string
     tokenDeathTime: number
+}
+export type LogOutResponse = {
+    info: string
 }

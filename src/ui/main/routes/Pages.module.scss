@@ -1,0 +1,29 @@
+@import "src/ui/common/styles/sass/variables";
+@import "src/ui/common/styles/sass/mixins";
+
+.pagesBlock {
+  .loading {
+    @include displayFlex(row, center);
+    @include heightWidth(100px, 100%);
+    background: $bgColorBlue;
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .popUpContainer {
+    .popUp {
+      position: absolute;
+      z-index: 1;
+      width: 350px;
+      top: 2%;
+      left: 1%;
+      box-shadow: 0px 4px 7px -1px $colorError;
+      background: $colorError;
+      border-radius: 8px;
+    }
+  }
+
+}

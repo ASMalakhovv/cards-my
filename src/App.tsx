@@ -7,12 +7,11 @@ import {useEffect} from "react";
 import {initializationApp} from "./app/app-reducer";
 
 function App() {
-    const profileID: string | null = useAppSelector(state => state.profile._id)
     const isInitialization: boolean = useAppSelector(state => state.cardsApp.isInitialization)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(initializationApp(profileID))
+        dispatch(initializationApp())
     }, [])
 
     return (

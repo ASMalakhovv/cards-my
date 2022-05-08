@@ -2,9 +2,6 @@
 @import "src/ui/common/styles/sass/variables";
 
 .loginBlock {
-  @include displayFlex(row, center, center);
-  @include heightWidth(80vh, 100%);
-  background: $bgColorBlue;
   position: relative;
 
   .loginContainer {

@@ -4,7 +4,7 @@ import {ChangeEvent, useEffect, useState} from "react";
 import {useAppSelector} from "../../../hooks/useReactRedux";
 
 export function Profile() {
-    debugger    //реакт-редакс
+    //реакт-редакс
     const nicknameState = useAppSelector(state => state.profile.name)
     const emailState = useAppSelector(state => state.profile.email)
     //хуки

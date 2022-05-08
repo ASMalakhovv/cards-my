@@ -2,14 +2,17 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {path} from '../routes/Pages';
 import s from './Header.module.scss'
-import SuperButton from "../../common/SuperButton/SuperButton";
-import {useAppDispatch} from "../../../hooks/useReactRedux";
-import { logOut } from '../../features/auth/login/login-reducer';
+import {useAppSelector} from "../../../hooks/useReactRedux";
+import Logout from "../../components/Logout/Logout";
 
 const Header = () => {
+    //hooks
 
-    const dispatch = useAppDispatch()
 
+    //react-redux
+    const profileID = useAppSelector(state => state.profile._id)
+
+    //class definition
     const activeClass = (isActive: boolean): Object => {
         if (isActive) {
             return {color: '#dc6562'}
@@ -17,9 +20,8 @@ const Header = () => {
         return {}
     }
 
-    const logOutHandler = () => {
-        dispatch(logOut())
-    }
+    //callbacks
+
 
     return (
         <div className={s.navLinks}>
@@ -30,9 +32,9 @@ const Header = () => {
             <NavLink to={path.passwordReset} style={({isActive}) => activeClass(isActive)}>PASSWORD RECOVERY</NavLink>
             <NavLink to={path.passwordNew} style={({isActive}) => activeClass(isActive)}>NEW PASSWORD</NavLink>
             <NavLink to={path.test} style={({isActive}) => activeClass(isActive)}>TEST</NavLink>
-            <SuperButton onClick={logOutHandler}>
-                Log out
-            </SuperButton>
+
+            {profileID && <Logout/>}
+
         </div>
     );
 };
