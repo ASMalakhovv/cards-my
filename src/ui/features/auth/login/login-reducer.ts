@@ -1,8 +1,7 @@
 import {AppStoreType, AppThunk, AppThunkDispatch} from "../../../../bll/store";
 import {authAPI} from "../../../../dal/api";
-import {setProfile} from "../../profile/profile-reducer";
+import {InitStateTypeProfile, setProfile} from "../../profile/profile-reducer";
 import {changeIsLoading, saveErrorApp} from "../../../../app/app-reducer";
-import {useAppSelector} from "../../../../hooks/useReactRedux";
 
 
 const initState = {
@@ -57,7 +56,7 @@ export const login = (email: string, password: string): AppThunk<void> => async 
     }
 }
 export const logOut = (): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
-    const profile = {
+    const profile: InitStateTypeProfile = {
         _id: null,
         email: null,
         rememberMe: false,
@@ -70,24 +69,26 @@ export const logOut = (): AppThunk<void> => async (dispatch: AppThunkDispatch, g
         __v: null,
         token: null,
         tokenDeathTime: null,
+        avatar: null
     }
     try {
         dispatch(changeIsLoading(true))
         let res = await authAPI.logOut()
         dispatch(setProfile(profile))
     } catch (err) {
-            if (err instanceof Error) {
-                dispatch(saveErrorApp(err.message))
-            } else if (typeof err === "string") {
-                dispatch(saveErrorApp(err))
-            } else {
-                dispatch(saveErrorApp('An error has occurred'))
-                console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
-            }
+        if (err instanceof Error) {
+            dispatch(saveErrorApp(err.message))
+        } else if (typeof err === "string") {
+            dispatch(saveErrorApp(err))
+        } else {
+            dispatch(saveErrorApp('An error has occurred'))
+            console.error(`An error has occurred. Contact the administrator. Error data: ${err}`)
+        }
     } finally {
         dispatch(changeIsLoading(false))
     }
 }
+
 
 //TYPES
 export type InitStateType = typeof initState

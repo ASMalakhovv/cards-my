@@ -1,6 +1,7 @@
-import {ProfileResponse} from "../../../dal/api";
+import {profileAPI, ProfileResponse} from "../../../dal/api";
+import {AppThunk} from "../../../bll/store";
+import {saveErrorApp} from "../../../app/app-reducer";
 
-export type InitStateType = typeof initState
 
 const initState = {
     _id: null as null | string,
@@ -15,9 +16,10 @@ const initState = {
     __v: null as null | number,
     token: null as null | string,
     tokenDeathTime: null as null | number,
+    avatar: null as null | string
 }
 
-export const profileReducer = (state: InitStateType = initState, action: ProfileAction): InitStateType => {
+export const profileReducer = (state: InitStateTypeProfile = initState, action: ProfileAction): InitStateTypeProfile => {
     switch (action.type) {
         case 'profile/SET-PROFILE': {
             return {...state, ...action.payload}
@@ -28,13 +30,34 @@ export const profileReducer = (state: InitStateType = initState, action: Profile
 }
 
 //ACTION-CREATOR
-export const setProfile = (payload: ProfileResponse | InitStateType) => {
+export const setProfile = (payload: InitStateTypeProfile) => {
     return {
         type: 'profile/SET-PROFILE',
         payload
+    } as const
+}
+
+//THUNK-CREATOR
+export const changeNickname = (nickname: string): AppThunk<void> => async dispatch => {
+    try {
+        debugger
+        const res = await profileAPI.changeNickName(nickname)
+        res && dispatch(setProfile(res))
+    } catch (e) {
+        if (e instanceof Error) {
+            dispatch(saveErrorApp(e.message))
+        } else if (typeof e === "string") {
+            dispatch(saveErrorApp(e))
+        } else {
+            dispatch(saveErrorApp('An error has occurred'))
+            console.error(`An error has occurred. Contact the administrator. Error data: ${e}`)
+        }
+    } finally {
+
     }
 }
 
 //TYPES
+export type InitStateTypeProfile = typeof initState
 export type ProfileAction = SetProfile
 export type SetProfile = ReturnType<typeof setProfile>

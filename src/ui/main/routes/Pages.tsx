@@ -12,6 +12,7 @@ import loading from '../../assets/image/loader.gif';
 import s from './Pages.module.scss'
 import PopUpWindowRegistration from "../../components/PopUpWindow/PopUpWindowRegistration/PopUpWindowRegistration";
 import {saveErrorApp} from "../../../app/app-reducer";
+import {CheckEmail} from "../../features/auth/password-reset/CheckEmail/CheckEmail";
 
 export const path = {
     login: '/login',
@@ -19,7 +20,8 @@ export const path = {
     profile: '/profile',
     passwordReset: '/password_reset',
     passwordNew: '/password_new',
-    test: '/test'
+    test: '/test',
+    checkEmail: '/check_email'
 }
 
 export const Pages = () => {
@@ -46,6 +48,7 @@ export const Pages = () => {
                 <Route path={path.profile} element={<Profile/>}/>
                 <Route path={path.passwordReset} element={<PasswordReset/>}/>
                 <Route path={path.passwordNew} element={<PasswordNew/>}/>
+                <Route path={path.checkEmail} element={<CheckEmail/>}/>
                 <Route path={'/*'} element={<Error404/>}/>
             </Routes>
             <div className={s.popUpContainer}>

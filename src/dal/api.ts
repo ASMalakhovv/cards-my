@@ -1,9 +1,10 @@
 import axios, {AxiosResponse} from "axios";
+import {from, message} from "../ui/features/auth/password-reset/templateEmail/templateEmail";
 import {createPromiseRej, throwNewError} from "../utils/error-utils";
 
 const instance = axios.create({
-    //baseURL: 'https://neko-back.herokuapp.com/2.0',
-    baseURL: 'http://localhost:7542/2.0/',
+    baseURL: 'https://neko-back.herokuapp.com/2.0',
+    //baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 });
 
@@ -27,6 +28,15 @@ export const authAPI = {
     logOut() {
         return instance
             .delete<LogOutResponse, AxiosResponse<LogOutResponse>>('auth/me')
+    },
+    resetPassword(email: string): Promise<void | ResetPassword> {
+        return instance
+            .post<ResetPassword, AxiosResponse<ResetPassword>, { email: string, from: string, message: string }>
+            ('auth/forgot', {email, from, message})
+            .then((res) => {
+                return res.data
+            })
+            .catch(err => createPromiseRej(err))
     }
 }
 
@@ -36,6 +46,15 @@ export const cardsAPI = {
             .post<ProfileResponse, AxiosResponse<ProfileResponse>, {}>
             ('auth/me', {})
             .then(res => res.data)
+            .catch(err => createPromiseRej(err))
+    }
+}
+export const profileAPI = {
+    changeNickName(name?: string, avatar?: string): Promise<void | ProfileResponse> {
+        return instance
+            .put<ChangeNickname, AxiosResponse<ChangeNickname>, { name?: string, avatar?: string }>
+            ('auth/me', {name: name})
+            .then(res => res.data.updatedUser)
             .catch(err => createPromiseRej(err))
     }
 }
@@ -59,18 +78,19 @@ export type LoginRequestData = {
     rememberMe: boolean
 }
 export type ProfileResponse = {
-    _id: string
-    email: string
-    rememberMe: boolean
-    isAdmin: boolean
-    name: string
-    verified: boolean
-    publicCardPacksCount: number
-    created: string
-    updated: string
-    __v: number
-    token: string
-    tokenDeathTime: number
+    _id: null | string,
+    email: null | string,
+    rememberMe: boolean,
+    isAdmin: boolean,
+    name: null | string,
+    verified: boolean,
+    publicCardPacksCount: null | number,
+    created: null | string,
+    updated: null | string,
+    __v: null | number,
+    token: null | string,
+    tokenDeathTime: null | number,
+    avatar: null | string
 }
 export type DeviceTokens = {
     _id: string
@@ -80,4 +100,16 @@ export type DeviceTokens = {
 }
 export type LogOutResponse = {
     info: string
+}
+export type ChangeNickname = {
+    updatedUser: ProfileResponse
+    token: string
+    tokenDeathTime: number
+}
+
+export type ResetPassword = {
+    answer: boolean
+    html: boolean
+    info: string
+    success: boolean
 }

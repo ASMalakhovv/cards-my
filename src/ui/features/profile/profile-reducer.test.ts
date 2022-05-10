@@ -1,7 +1,7 @@
-import {profileReducer, setProfile} from "./profile-reducer";
-import {ProfileResponse} from "../../../dal/api";
+import {InitStateTypeProfile, profileReducer, setProfile} from "./profile-reducer";
 
-let initState: ProfileResponse;
+
+let initState: InitStateTypeProfile;
 beforeEach(() => {
     initState = {
         _id: "5eecf82a3ed8f700042f1186",
@@ -15,7 +15,8 @@ beforeEach(() => {
         updated: "2022-05-05T09:31:24.522Z",
         __v: 0,
         token: "21a29680-cc56-11ec-9ad4-73dc872cc0d5",
-        tokenDeathTime: 1651753884520
+        tokenDeathTime: 1651753884520,
+        avatar: null,
     }
 })
 
@@ -29,16 +30,15 @@ test('must set profile', () => {
     expect(initState._id).toBe('5eecf82a3ed8f700042f1186')
 })
 
-/*
-test('should set error', () => {
+/*test('should change name', () => {
     //action
-    let action = setErrorRegistration('error')
-    let state = registrationReducer(initState, action)
+    let action = changeNickname('Aleksandr')
+    let state = profileReducer(initState, action)
     //expect
-    expect(state.error).toBe('error')
-})
+    expect(state.name).toBe('Aleksandr')
+})*/
 
-test('should set message', () => {
+/*test('should set message', () => {
     //action
     let action = setMessageRegistration('OK')
     let state = registrationReducer(initState, action)
