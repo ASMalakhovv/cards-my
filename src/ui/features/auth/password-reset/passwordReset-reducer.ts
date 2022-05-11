@@ -10,11 +10,14 @@ const initState = {
 
 export const passwordResetReducer = (state: InitStateTypeReset = initState, action: PasswordResetAction): InitStateTypeReset => {
     switch (action.type) {
+        case "reset/SET-MESSAGE": {
+            return {...state,message: action.payload}
+        }
         case "reset/SET-ERROR": {
-            return {...state}
+            return {...state,error: action.payload}
         }
         case "reset/CHANGE-IS-LOADING": {
-            return {...state}
+            return {...state,isLoading: action.payload}
         }
         default:
             return state
@@ -46,7 +49,7 @@ export const sendInstructionsTC = (email: string): AppThunk<void> => async dispa
     try {
         dispatch(changeIsLoadingReset(true))
         let res = await authAPI.resetPassword(email)
-        res && setMessageReset(res.info)
+        res && dispatch(setMessageReset(res.info))
     } catch (err) {
         if (err instanceof Error) {
             dispatch(setErrorReset(err.message))
@@ -65,6 +68,7 @@ export const sendInstructionsTC = (email: string): AppThunk<void> => async dispa
 
 //TYPES
 export type InitStateTypeReset = typeof initState
-export type PasswordResetAction = ChangeIsLoadingReset | SetErrorReset
+export type PasswordResetAction = ChangeIsLoadingReset | SetErrorReset | SetMessageReset
 export type ChangeIsLoadingReset = ReturnType<typeof changeIsLoadingReset>
 export type SetErrorReset = ReturnType<typeof setErrorReset>
+export type SetMessageReset = ReturnType<typeof setMessageReset>

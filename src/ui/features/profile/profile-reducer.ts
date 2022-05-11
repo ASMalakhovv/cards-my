@@ -40,7 +40,6 @@ export const setProfile = (payload: InitStateTypeProfile) => {
 //THUNK-CREATOR
 export const changeNickname = (nickname: string): AppThunk<void> => async dispatch => {
     try {
-        debugger
         const res = await profileAPI.changeNickName(nickname)
         res && dispatch(setProfile(res))
     } catch (e) {

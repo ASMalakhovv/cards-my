@@ -1,0 +1,40 @@
+@import "../../../../common/styles/sass/mixins";
+@import "../../../../common/styles/sass/variables";
+
+.checkBlock {
+  .checkContainer {
+    @include displayFlex(column, flex-start, center);
+    @include heightWidth(468px, 413px);
+    background: white;
+    border-radius: 8px;
+    position: relative;
+
+    header {
+      h1 {
+        font-family: $fontFamilyHeader;
+        margin: 20px 0 0;
+      }
+    }
+
+    .img {
+      img {
+        @include heightWidth(150px, 150px)
+      }
+    }
+
+    .main {
+      @include heightWidth(auto, 350px);
+      @include displayFlex(column, flex-start, center);
+
+      h1 {
+        font-family: $fontFamilyHeader;
+        margin: 0;
+      }
+
+      p {
+        text-align: center;
+        color: $colorGrey;
+      }
+    }
+  }
+}
