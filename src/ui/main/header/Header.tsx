@@ -30,8 +30,6 @@ const Header = () => {
             <NavLink to={path.login} style={({isActive}) => activeClass(isActive)}>LOGIN</NavLink>
             <NavLink to={path.signup} style={({isActive}) => activeClass(isActive)}>REGISTRATION</NavLink>
             <NavLink to={path.passwordReset} style={({isActive}) => activeClass(isActive)}>PASSWORD RECOVERY</NavLink>
-            <NavLink to={path.passwordNew} style={({isActive}) => activeClass(isActive)}>NEW PASSWORD</NavLink>
-            <NavLink to={path.test} style={({isActive}) => activeClass(isActive)}>TEST</NavLink>
             {profileID && <Logout/>}
 
         </div>

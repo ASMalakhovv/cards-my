@@ -1,5 +1,5 @@
 import {AppStoreType, AppThunk, AppThunkDispatch} from "../../../../bll/store";
-import {authAPI} from "../../../../dal/api";
+import {authAPI, ProfileResponse} from "../../../../dal/api";
 import {InitStateTypeProfile, setProfile} from "../../profile/profile-reducer";
 import {changeIsLoading, saveErrorApp} from "../../../../app/app-reducer";
 
@@ -56,7 +56,7 @@ export const login = (email: string, password: string): AppThunk<void> => async 
     }
 }
 export const logOut = (): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
-    const profile: InitStateTypeProfile = {
+    const profile: ProfileResponse = {
         _id: null,
         email: null,
         rememberMe: false,

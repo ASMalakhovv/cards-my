@@ -11,7 +11,10 @@ import {path} from '../../../main/routes/Pages';
 import {useValidationPassword} from "../../../../hooks/useValidationPassword";
 
 
+
 export const Login = React.memo(() => {
+
+
     //хуки
     const [valueEmail, setValueEmail] = useState("")
     const [valuePassword, setValuePassword] = useState("")

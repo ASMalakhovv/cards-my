@@ -1,4 +1,11 @@
-import {InitStateTypeProfile, profileReducer, setProfile} from "./profile-reducer";
+import {
+    InitStateTypeProfile,
+    profileReducer,
+    setErrorProfile,
+    setIsLoadingProfile,
+    setMessageProfile,
+    setProfile
+} from "./profile-reducer";
 
 
 let initState: InitStateTypeProfile;
@@ -17,6 +24,11 @@ beforeEach(() => {
         token: "21a29680-cc56-11ec-9ad4-73dc872cc0d5",
         tokenDeathTime: 1651753884520,
         avatar: null,
+        setting: {
+            isLoading: false,
+            error: null,
+            message: null
+        }
     }
 })
 
@@ -29,19 +41,28 @@ test('must set profile', () => {
     expect(state._id).toBe('2')
     expect(initState._id).toBe('5eecf82a3ed8f700042f1186')
 })
-
-/*test('should change name', () => {
+test('should set message', () => {
     //action
-    let action = changeNickname('Aleksandr')
+    let action = setMessageProfile('OK')
     let state = profileReducer(initState, action)
     //expect
-    expect(state.name).toBe('Aleksandr')
-})*/
-
-/*test('should set message', () => {
+    expect(state.setting.message).toBe('OK')
+    expect(initState.setting.message).toBe(null)
+})
+test('should set error', () => {
     //action
-    let action = setMessageRegistration('OK')
-    let state = registrationReducer(initState, action)
+    let action = setErrorProfile('Error')
+    let state = profileReducer(initState, action)
     //expect
-    expect(state.message).toBe('OK')
-})*/
+    expect(state.setting.error).toBe('Error')
+    expect(initState.setting.error).toBe(null)
+})
+test('should set isLoading', () => {
+    //action
+    let action = setIsLoadingProfile(true)
+    let state = profileReducer(initState, action)
+    //expect
+    expect(state.setting.isLoading).toBe(true)
+    expect(initState.setting.isLoading).toBe(false)
+})
+

@@ -13,6 +13,7 @@ import s from './Pages.module.scss'
 import PopUpWindowRegistration from "../../components/PopUpWindow/PopUpWindowRegistration/PopUpWindowRegistration";
 import {saveErrorApp} from "../../../app/app-reducer";
 import {CheckEmail} from "../../features/auth/password-reset/CheckEmail/CheckEmail";
+import RequireAuth from "../../common/RequireAuth/RequireAuth";
 
 export const path = {
     login: '/login',
@@ -45,7 +46,9 @@ export const Pages = () => {
                 <Route path={path.test} element={<Test/>}/>
                 <Route path={path.login} element={<Login/>}/>
                 <Route path={path.signup} element={<Register/>}/>
-                <Route path={path.profile} element={<Profile/>}/>
+                <Route path={path.profile} element={<RequireAuth>
+                    <Profile/>
+                </RequireAuth>}/>
                 <Route path={path.passwordReset} element={<PasswordReset/>}/>
                 <Route path={`${path.passwordNew}/:token`} element={<PasswordNew/>}/>
                 <Route path={path.checkEmail} element={<CheckEmail/>}/>

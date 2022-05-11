@@ -3,14 +3,14 @@
 
 .profileBlock {
   @include displayFlex(row, center, center);
-  //@include heightWidth(80vh, 100%);
-  //background: $bgColorBlue;
+
 
   .profileContainer {
     @include displayFlex(column, flex-start, center);
     @include heightWidth(540px, 413px);
     background: white;
     border-radius: 8px;
+    position: relative;
 
     .progressBar {
       height: 10px;
@@ -31,6 +31,29 @@
         height: 2px;
         background: black;
         margin-top: 10px;
+      }
+    }
+
+    .popUpContainer {
+      .popUp {
+        position: absolute;
+        z-index: 1;
+        width: 350px;
+        top: 4%;
+        left: 7.6%;
+
+
+        .errorPopUp {
+          box-shadow: 0px 4px 7px -1px $colorError;
+          background: $colorError;
+          border-radius: 8px;
+        }
+
+        .messagePopUp {
+          box-shadow: 0px 4px 7px -1px $colorMessage;
+          background: rgb(167, 221, 255);
+          border-radius: 8px;
+        }
       }
     }
 
