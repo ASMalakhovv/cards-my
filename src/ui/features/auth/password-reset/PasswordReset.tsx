@@ -56,6 +56,7 @@ export const PasswordReset = React.memo(() => {
                 <header>
                     <h1>it-incubator</h1>
                     <h2>Forgot your password?</h2>
+                    <span></span>
                 </header>
                 <div className={s.popUpContainer}>
                     <div className={s.popUp}>

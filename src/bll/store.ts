@@ -3,7 +3,10 @@ import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {ProfileAction, profileReducer} from "../ui/features/profile/profile-reducer";
 import {registrationReducer, RegistrationAction} from "../ui/features/auth/register/registration-reducer";
 import {LoginAction, loginReducer} from "../ui/features/auth/login/login-reducer";
-import {PasswordNewAction, passwordNewReducer} from "../ui/features/auth/password-new/passwordNew-reducer";
+import {
+    NewPasswordAction,
+    passwordNewReducer
+} from "../ui/features/auth/password-new/passwordNew-reducer";
 import {PasswordResetAction, passwordResetReducer} from "../ui/features/auth/password-reset/passwordReset-reducer";
 import {AppAction, appReducer} from "../app/app-reducer";
 
@@ -11,7 +14,7 @@ import {AppAction, appReducer} from "../app/app-reducer";
 //TYPE
 export type AppStoreType = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<AppStoreType, unknown, ActionType>;
-export type ActionType = AppAction | LoginAction | PasswordNewAction |
+export type ActionType = AppAction | LoginAction | NewPasswordAction |
     PasswordResetAction | ProfileAction | RegistrationAction
 export type AppThunk<ReturnType> = ThunkAction<ReturnType,
     AppStoreType,

@@ -27,7 +27,7 @@ export const authAPI = {
     },
     logOut() {
         return instance
-            .delete<LogOutResponse, AxiosResponse<LogOutResponse>>('auth/me')
+            .delete<LogOutNewPasswordResponse, AxiosResponse<LogOutNewPasswordResponse>>('auth/me')
     },
     resetPassword(email: string): Promise<void | ResetPassword> {
         return instance
@@ -36,6 +36,13 @@ export const authAPI = {
             .then((res) => {
                 return res.data
             })
+            .catch(err => createPromiseRej(err))
+    },
+    newPassword(password: string, resetPasswordToken: string): Promise<void | LogOutNewPasswordResponse> {
+        return instance
+            .post<LogOutNewPasswordResponse, AxiosResponse<LogOutNewPasswordResponse>, { password: string, resetPasswordToken: string }>
+            ('auth/set-new-password', {password, resetPasswordToken})
+            .then(res => res.data)
             .catch(err => createPromiseRej(err))
     }
 }
@@ -98,7 +105,7 @@ export type DeviceTokens = {
     token: string
     tokenDeathTime: number
 }
-export type LogOutResponse = {
+export type LogOutNewPasswordResponse = {
     info: string
 }
 export type ChangeNickname = {

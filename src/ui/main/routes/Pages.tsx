@@ -47,7 +47,7 @@ export const Pages = () => {
                 <Route path={path.signup} element={<Register/>}/>
                 <Route path={path.profile} element={<Profile/>}/>
                 <Route path={path.passwordReset} element={<PasswordReset/>}/>
-                <Route path={path.passwordNew} element={<PasswordNew/>}/>
+                <Route path={`${path.passwordNew}/:token`} element={<PasswordNew/>}/>
                 <Route path={path.checkEmail} element={<CheckEmail/>}/>
                 <Route path={'/*'} element={<Error404/>}/>
             </Routes>

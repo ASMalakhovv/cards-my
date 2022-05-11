@@ -1,5 +1,5 @@
 import s from "./CheckEmail.module.scss"
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import approvedEmail from "../../../../assets/image/approved_mail.png";
 
 export const CheckEmail = () => {
@@ -20,6 +20,7 @@ export const CheckEmail = () => {
                 </div>
                 <div className={s.main}>
                     <h1>Check Email</h1>
+                    <span></span>
                     <p>We've sent an Email with instructions to {locationState.email}</p>
                 </div>
             </div>
