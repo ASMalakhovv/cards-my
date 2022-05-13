@@ -1,19 +1,21 @@
 {
   "files": {
-    "main.css": "/cards-my/static/css/main.fa702269.css",
-    "main.js": "/cards-my/static/js/main.dd345459.js",
+    "main.css": "/cards-my/static/css/main.7dd4b610.css",
+    "main.js": "/cards-my/static/js/main.5131c3c4.js",
     "static/js/787.aab94a85.chunk.js": "/cards-my/static/js/787.aab94a85.chunk.js",
     "static/media/initialization.gif": "/cards-my/static/media/initialization.911faae36b2122196957.gif",
+    "static/media/loader.gif": "/cards-my/static/media/loader.ab4b8d287a96ce6e812e.gif",
+    "static/media/approved_mail.png": "/cards-my/static/media/approved_mail.5331ec06be2f82493e60.png",
     "static/media/progress bar.gif": "/cards-my/static/media/progress bar.77a283aee3ed3fa8df84.gif",
     "index.html": "/cards-my/index.html",
     "static/media/pen_icon.svg": "/cards-my/static/media/pen_icon.0ea602c07c7c58132fe4ff0b85ee4ee8.svg",
     "static/media/select_icon.svg": "/cards-my/static/media/select_icon.11da934fce4e9dcc4c82560ed70e451e.svg",
-    "main.fa702269.css.map": "/cards-my/static/css/main.fa702269.css.map",
-    "main.dd345459.js.map": "/cards-my/static/js/main.dd345459.js.map",
+    "main.7dd4b610.css.map": "/cards-my/static/css/main.7dd4b610.css.map",
+    "main.5131c3c4.js.map": "/cards-my/static/js/main.5131c3c4.js.map",
     "787.aab94a85.chunk.js.map": "/cards-my/static/js/787.aab94a85.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa702269.css",
-    "static/js/main.dd345459.js"
+    "static/css/main.7dd4b610.css",
+    "static/js/main.5131c3c4.js"
   ]
 }
