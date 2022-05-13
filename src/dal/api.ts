@@ -66,7 +66,45 @@ export const profileAPI = {
     }
 }
 
+
+export const packApi = {
+    getPacks(queryParam?: QueryParamsGetPack): Promise<void | GetPacks> {
+        return instance
+            .get<GetPacks, AxiosResponse<GetPacks>, QueryParamsGetPack>
+            ('cards/pack', {params: {...queryParam}})
+            .then(res => res.data)
+            .catch(err => createPromiseRej(err))
+    },
+    createNewPack() {
+        return instance
+            .post('cards/pack', {cardsPack: {}})
+            .then(res => res.data)
+            .catch(err => createPromiseRej(err))
+    },
+    deletePack(id: string) {
+        return instance
+            .delete('cards/pack', {params: {id}})
+            .then(res => res.data)
+            .catch(err => createPromiseRej(err))
+    },
+    updatePack(_id: string) {
+        return instance
+            .put('cards/pack', {cardsPack: {_id}})
+            .then(res => res.data)
+            .catch(err => createPromiseRej(err))
+    }
+}
+
 //TYPES
+export type QueryParamsGetPack = {
+    packName?: string
+    min?: string | null
+    max?: string | null
+    sortPacks?: string | null
+    page?: number | null
+    pageCount?: number | null
+    user_id?: string | null
+}
 export type RegistrationResponse = {
     _id: string,
     email: string,
@@ -113,10 +151,37 @@ export type ChangeNickname = {
     token: string
     tokenDeathTime: number
 }
-
 export type ResetPassword = {
     answer: boolean
     html: boolean
     info: string
     success: boolean
+}
+export type GetPacks = {
+    cardPacks: CardPack []
+    page: null | number
+    pageCount: null | number
+    cardPacksTotalCount: null | number
+    minCardsCount: number
+    maxCardsCount: number
+    token: null | string
+    tokenDeathTime: null | number
+}
+export type CardPack = {
+    _id: null | string
+    user_id: null | string
+    user_name: null | string
+    private: boolean
+    name: null | string
+    path: null | string
+    grade: null | number
+    shots: null | number
+    cardsCount: null | number
+    type: null | string
+    rating: null | number
+    created: null | string
+    updated: null | string
+    more_id: null | string
+    __v: null | number
+    deckCover: null | string
 }

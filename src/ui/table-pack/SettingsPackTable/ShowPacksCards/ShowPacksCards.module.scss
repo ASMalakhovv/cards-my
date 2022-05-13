@@ -1,0 +1,21 @@
+@import "../../../common/styles/sass/mixins";
+@import "../../../common/styles/sass/variables";
+
+.showBlock {
+  @include heightWidth(610px, 243px);
+  @include displayFlex(row, center, flex-start);
+  background: #5c7ac9;
+  border: 1px solid;
+
+  .showContainer {
+    @include displayFlex(column);
+    @include heightWidth(auto, 196px);
+    border: 1px solid;
+    background: #1c62ff;
+
+    h1 {
+      font-size: 18px;
+      margin: 32px 0;
+    }
+  }
+}

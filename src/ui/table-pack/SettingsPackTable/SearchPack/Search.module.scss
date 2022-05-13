@@ -1,0 +1,13 @@
+@import "../../../common/styles/sass/variables";
+@import "../../../common/styles/sass/mixins";
+
+.searchContainer {
+  .input {
+    @include heightWidth(36px, 461px)
+  }
+
+  .button {
+    @include heightWidth(36px, auto);
+    padding: 5px;
+  }
+}

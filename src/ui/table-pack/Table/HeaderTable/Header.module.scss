@@ -1,0 +1,9 @@
+@import "../../../common/styles/sass/mixins";
+@import "../../../common/styles/sass/variables";
+
+.headerContainer {
+  @include displayFlex(row,space-between);
+  @include heightWidth(48px,669px);
+  border: 1px solid;
+  background: #61fb80;
+}

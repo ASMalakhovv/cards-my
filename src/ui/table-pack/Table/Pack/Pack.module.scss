@@ -1,0 +1,8 @@
+@import "../../../common/styles/sass/mixins";
+@import "../../../common/styles/sass/variables";
+
+.packContainer{
+  @include displayFlex(row,space-between);
+  border: 1px solid;
+  background: #61dafb;
+}

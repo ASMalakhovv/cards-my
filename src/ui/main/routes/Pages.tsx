@@ -14,6 +14,7 @@ import PopUpWindowRegistration from "../../components/PopUpWindow/PopUpWindowReg
 import {saveErrorApp} from "../../../app/app-reducer";
 import {CheckEmail} from "../../features/auth/password-reset/CheckEmail/CheckEmail";
 import RequireAuth from "../../common/RequireAuth/RequireAuth";
+import PacksList from "../../table-pack/PacksList";
 
 export const path = {
     login: '/login',
@@ -22,7 +23,8 @@ export const path = {
     passwordReset: '/password_reset',
     passwordNew: '/password_new',
     test: '/test',
-    checkEmail: '/check_email'
+    checkEmail: '/check_email',
+    packsList: '/packs_list'
 }
 
 export const Pages = () => {
@@ -52,6 +54,9 @@ export const Pages = () => {
                 <Route path={path.passwordReset} element={<PasswordReset/>}/>
                 <Route path={`${path.passwordNew}/:token`} element={<PasswordNew/>}/>
                 <Route path={path.checkEmail} element={<CheckEmail/>}/>
+                <Route path={path.packsList} element={<RequireAuth>
+                    <PacksList/>
+                </RequireAuth>}/>
                 <Route path={'/*'} element={<Error404/>}/>
             </Routes>
             <div className={s.popUpContainer}>

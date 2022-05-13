@@ -1,0 +1,13 @@
+@import "../common/styles/sass/variables";
+@import "../common/styles/sass/mixins";
+
+.packsListBlock {
+  @include heightWidth(68.1vh,1008px);
+  padding: 5px;
+  background: coral;
+
+  .packsListContainer {
+    @include displayFlex();
+    background: white;
+  }
+}

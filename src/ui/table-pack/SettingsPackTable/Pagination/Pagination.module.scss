@@ -1,0 +1,9 @@
+@import "../../../common/styles/sass/mixins";
+@import "../../../common/styles/sass/variables";
+
+.pagesContainer {
+  @include displayFlex();
+  @include heightWidth(24px,401px);
+  border: 1px solid;
+  background: #fbee61;
+}

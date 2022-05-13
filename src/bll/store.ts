@@ -9,13 +9,15 @@ import {
 } from "../ui/features/auth/password-new/passwordNew-reducer";
 import {PasswordResetAction, passwordResetReducer} from "../ui/features/auth/password-reset/passwordReset-reducer";
 import {AppAction, appReducer} from "../app/app-reducer";
+import {ActionPackType, packListReducer} from "../ui/table-pack/packList-reducer";
+import {ActionSettingPackType, settingPacksReducer} from "../ui/table-pack/SettingsPackTable/setting-reducer";
 
 
 //TYPE
 export type AppStoreType = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<AppStoreType, unknown, ActionType>;
 export type ActionType = AppAction | LoginAction | NewPasswordAction |
-    PasswordResetAction | ProfileAction | RegistrationAction
+    PasswordResetAction | ProfileAction | RegistrationAction | ActionPackType | ActionSettingPackType
 export type AppThunk<ReturnType> = ThunkAction<ReturnType,
     AppStoreType,
     unknown,
@@ -29,7 +31,9 @@ const reducers = combineReducers({
     passwordNew: passwordNewReducer,
     passwordReset: passwordResetReducer,
     profile: profileReducer,
-    registration: registrationReducer
+    registration: registrationReducer,
+    packs: packListReducer,
+    settingPacks: settingPacksReducer
 })
 
 const store = createStore(reducers, applyMiddleware(thunk))
