@@ -1,10 +1,11 @@
 import axios, {AxiosResponse} from "axios";
 import {from, message} from "../ui/features/auth/password-reset/templateEmail/templateEmail";
 import {createPromiseRej, throwNewError} from "../utils/error-utils";
+import {SettingsCardState} from "../ui/table-cards/settingsCard-reducer";
 
 const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
-    //baseURL: 'http://localhost:7542/2.0/',
+    //baseURL: 'https://neko-back.herokuapp.com/2.0',
+    baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 });
 
@@ -47,7 +48,7 @@ export const authAPI = {
     }
 }
 
-export const cardsAPI = {
+export const appAPI = {
     authMe(): Promise<void | ProfileResponse> {
         return instance
             .post<ProfileResponse, AxiosResponse<ProfileResponse>, {}>
@@ -95,6 +96,15 @@ export const packApi = {
     }
 }
 
+export const cardsAPI = {
+    getCards(cardsPack_id: string, queryParam?: QueryParamsGetCard):Promise<GetCards> {
+        return instance
+            .get<GetCards, AxiosResponse<GetCards>, QueryParamsGetCard>
+            ('/cards/card', {params: {...queryParam,cardsPack_id}})
+            .then(res => res.data)
+    }
+}
+
 //TYPES
 export type QueryParamsGetPack = {
     packName?: string
@@ -105,6 +115,7 @@ export type QueryParamsGetPack = {
     pageCount?: number | null
     user_id?: string | null
 }
+export type QueryParamsGetCard = Partial<SettingsCardState>
 export type RegistrationResponse = {
     _id: string,
     email: string,
@@ -184,4 +195,31 @@ export type CardPack = {
     more_id: null | string
     __v: null | number
     deckCover: null | string
+}
+export type GetCards = {
+    cards: CardType[]
+    packUserId: string | null
+    page: number | null
+    pageCount: number | null
+    cardsTotalCount: number | null
+    minGrade: number | null
+    maxGrade: number | null
+    token: string | null
+    tokenDeathTime: number | null
+}
+export type CardType = {
+    _id: string
+    cardsPack_id: string
+    user_id: string
+    answer: string
+    question: string
+    grade: number
+    shots: number
+    comments: string
+    type: string
+    rating: number
+    more_id: string
+    created: string
+    updated: string
+    __v: number
 }

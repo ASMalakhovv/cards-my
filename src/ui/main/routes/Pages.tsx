@@ -15,6 +15,7 @@ import {saveErrorApp} from "../../../app/app-reducer";
 import {CheckEmail} from "../../features/auth/password-reset/CheckEmail/CheckEmail";
 import RequireAuth from "../../common/RequireAuth/RequireAuth";
 import PacksList from "../../table-pack/PacksList";
+import PackName from "../../table-cards/PackName";
 
 export const path = {
     login: '/login',
@@ -24,7 +25,8 @@ export const path = {
     passwordNew: '/password_new',
     test: '/test',
     checkEmail: '/check_email',
-    packsList: '/packs_list'
+    packsList: '/packs_list',
+    packName:'/pack_name'
 }
 
 export const Pages = () => {
@@ -56,6 +58,9 @@ export const Pages = () => {
                 <Route path={path.checkEmail} element={<CheckEmail/>}/>
                 <Route path={path.packsList} element={<RequireAuth>
                     <PacksList/>
+                </RequireAuth>}/>
+                <Route path={`${path.packName}/:id`} element={<RequireAuth>
+                    <PackName/>
                 </RequireAuth>}/>
                 <Route path={'/*'} element={<Error404/>}/>
             </Routes>

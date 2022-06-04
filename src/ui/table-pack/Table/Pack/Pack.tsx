@@ -2,6 +2,8 @@ import React from 'react';
 import s from "./Pack.module.scss"
 import {useAppDispatch, useAppSelector} from "../../../../hooks/useReactRedux";
 import {deletePack, updatePack} from "../../packList-reducer";
+import {Link} from "react-router-dom";
+import { path } from '../../../main/routes/Pages';
 
 export type PackPropsType = {
     name: string | null
@@ -26,7 +28,7 @@ const Pack = ({name, cards, update, created, id, ...props}: PackPropsType) => {
 
     return (
         <div className={s.packContainer}>
-            <div>{name}</div>
+            <Link to={`${path.packName}/${id}`}>{name}</Link>
             <div>{cards}</div>
             <div>{update}</div>
             <div>{created}</div>

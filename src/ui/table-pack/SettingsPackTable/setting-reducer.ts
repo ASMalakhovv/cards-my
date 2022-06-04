@@ -11,7 +11,6 @@ const initState = {
 }
 
 export const settingPacksReducer = (state: InitStateSettingPackType = initState, action: ActionSettingPackType): InitStateSettingPackType => {
-    debugger
     switch (action.type) {
         case "setting/SET-MAX-CARD": {
             return {...state, max: action.payload}

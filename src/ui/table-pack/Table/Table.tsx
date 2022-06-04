@@ -3,21 +3,29 @@ import s from "./Table.module.scss"
 import Search from "../SettingsPackTable/SearchPack/Search";
 import HeaderTable from "./HeaderTable/HeaderTable";
 import Pack from "./Pack/Pack";
-import Pagination from "../SettingsPackTable/Pagination/Pagination";
-import {useAppSelector} from "../../../hooks/useReactRedux";
+import Pagination from "../../common/Pagination/Pagination";
+import {useAppDispatch, useAppSelector} from "../../../hooks/useReactRedux";
 import {CardPack} from "../../../dal/api";
+import {setPagePacks} from "../SettingsPackTable/setting-reducer";
 
 const Table = () => {
 
     //react-redux
+    const dispatch = useAppDispatch()
     const packs: CardPack[] = useAppSelector(state => state.packs.cardPacks)
+    const cardPacksTotalCount: number | null = useAppSelector(state => state.packs.cardPacksTotalCount)
+    const page: number | null = useAppSelector(state => state.packs.page)
 
     //заполняем таблицу
     const packsTable = packs.map(p => {
         return <Pack key={p._id} name={p.name} update={p.updated}
                      cards={p.cardsCount} created={p.created} id={p._id}/>
-            })
+    })
 
+    //callbacks
+    const setPage = (page: number) => {
+        dispatch(setPagePacks(page))
+    }
 
     return (
         <div className={s.tableBlock}>
@@ -31,7 +39,7 @@ const Table = () => {
                     {packsTable}
                 </div>
                 <div>
-                    <Pagination/>
+                    <Pagination totalCount={cardPacksTotalCount} page={page} onChange={setPage}/>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import {AppStoreType, AppThunk, AppThunkDispatch} from "../bll/store";
-import {cardsAPI} from "../dal/api";
+import {appAPI} from "../dal/api";
 import {setProfile} from "../ui/features/profile/profile-reducer";
 import {useAppSelector} from "../hooks/useReactRedux";
 
@@ -53,7 +53,7 @@ export const initializationApp = (): AppThunk<void> => async (dispatch: AppThunk
     const isInitialization = getState().cardsApp.isInitialization
     try {
         if (!profileID) {
-            const res = await cardsAPI.authMe()
+            const res = await appAPI.authMe()
             res && dispatch(setProfile(res))
         }
     } catch (err) {

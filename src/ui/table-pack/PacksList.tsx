@@ -15,6 +15,7 @@ const PacksList = () => {
     const setting = useAppSelector(state => state.settingPacks)
     const userId = useAppSelector(state => state.profile._id)
     useEffect(() => {
+        debugger
         dispatch(getPack())
     }, [setting])
 

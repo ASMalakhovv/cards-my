@@ -1,0 +1,37 @@
+@import "../common/styles/sass/variables";
+@import "../common/styles/sass/mixins";
+
+.packsListBlock {
+  @include heightWidth(68.1vh, 1008px);
+  @include displayFlex(row, center, flex-start);
+  padding: 15px;
+  background: coral;
+  border: 1px solid;
+
+  .packsListContainer {
+    @include displayFlex(column);
+    @include heightWidth(100%, 100%);
+    background: white;
+    border: 1px solid;
+
+    .header {
+      border: 1px solid;
+      margin: 25px 0;
+      padding: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+
+    .search {
+
+    }
+
+    .table {
+      margin-top: 20px;
+      border: 1px solid;
+      width: 100%;
+      background: #999999;
+    }
+  }
+}

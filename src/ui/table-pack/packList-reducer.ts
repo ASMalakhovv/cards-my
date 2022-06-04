@@ -53,10 +53,9 @@ const setPack = (payload: InitStatePackType) => {
 
 //THUNK-CREATOR
 export const getPack = (): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
-    const setting: QueryParamsGetPack = getState().settingPacks
-    const trueSetting = trueQueryParams(setting)
-
     try {
+        const setting: QueryParamsGetPack = getState().settingPacks
+        const trueSetting = trueQueryParams(setting)
         const res = await packApi.getPacks(trueSetting)
         res && dispatch(setPack(res))
     } catch (e) {

@@ -1,0 +1,28 @@
+@import "../../common/styles/sass/variables";
+@import "../../common/styles/sass/mixins";
+
+.searchContainer {
+  @include displayFlex(row, flex-start, center);
+  background: #61dafb;
+  border: 1px solid;
+
+
+  .inputContainer {
+    @include displayFlex(column,space-between);
+    height: 80px;
+
+    .input {
+      @include heightWidth(36px, 600px);
+    }
+  }
+
+  .button {
+    margin-left: 10px;
+    width: 150px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .button:nth-child(3) {
+    margin-left: 62px;
+  }
+}

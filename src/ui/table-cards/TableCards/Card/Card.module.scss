@@ -1,0 +1,32 @@
+@import "../../../common/styles/sass/mixins";
+@import "../../../common/styles/sass/variables";
+
+.card {
+  border: 1px solid;
+  background: aquamarine;
+  @include displayFlex(row,space-between);
+
+  .question {
+
+  }
+
+  .answer {
+
+  }
+
+  .lastUpdate {
+
+  }
+
+  .grade {
+
+  }
+}
+
+
+
+
+
+
+
+
