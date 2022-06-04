@@ -21,7 +21,6 @@ const TableCard = () => {
         question={c.question}
         grade={c.grade}
     />)
-    debugger
     //callbacks
     const setPage = (page: number) => {
         dispatch(setSettingCard({key: 'page', value: page}))

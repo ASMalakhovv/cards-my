@@ -40,7 +40,6 @@ export const getCards = (id: string): AppThunk<void> => async (dispatch: AppThun
         const trueSetting = trueQueryParamsCard(settings)
         const res: GetCards = await cardsAPI.getCards(id,trueSetting)
         res && dispatch(setCards(res))
-        debugger
     } catch (e) {
 
     } finally {
