@@ -36,9 +36,9 @@ export const setCards = (payload: InitStatePackName) => {
 //THUNK-CREATOR
 export const getCards = (id: string): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
     try {
-        const settings:SettingsCardState = getState().settingsCard
+        const settings: SettingsCardState = getState().settingsCard
         const trueSetting = trueQueryParamsCard(settings)
-        const res: GetCards = await cardsAPI.getCards(id,trueSetting)
+        const res: GetCards = await cardsAPI.getCards(id, trueSetting)
         res && dispatch(setCards(res))
     } catch (e) {
 
@@ -46,6 +46,31 @@ export const getCards = (id: string): AppThunk<void> => async (dispatch: AppThun
 
     }
 }
+
+export const createCard = (cardsPack_id: string): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
+    try {
+        await cardsAPI.createCard(cardsPack_id)
+        const settings: SettingsCardState = getState().settingsCard
+        const trueSetting = trueQueryParamsCard(settings)
+        const res: GetCards = await cardsAPI.getCards(cardsPack_id, trueSetting)
+        res && dispatch(setCards(res))
+        await cardsAPI.getCards(cardsPack_id,)
+    } catch (e) {
+
+    }
+}
+export const deleteCard = (cardID: string, cardsPack_id: string): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
+    try {
+        await cardsAPI.deleteCard(cardID)
+        const settings: SettingsCardState = getState().settingsCard
+        const trueSetting = trueQueryParamsCard(settings)
+        const res: GetCards = await cardsAPI.getCards(cardsPack_id, trueSetting)
+        res && dispatch(setCards(res))
+    } catch (e) {
+
+    }
+}
+
 
 //TYPES
 export type InitStatePackName = typeof initState

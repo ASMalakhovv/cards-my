@@ -3,6 +3,8 @@ import s from './SearchC.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../hooks/useReactRedux";
 import {setSettingCard} from "../settingsCard-reducer";
 import {useDebounce} from "../../../hooks/useDebounce";
+import {createCard} from "../packName-reducer";
+import {useParams} from "react-router-dom";
 
 const SearchC = () => {
     //react-redux
@@ -12,6 +14,8 @@ const SearchC = () => {
     const [valueAnswer, setValueAnswer] = useState<string | null>(null)
     const questionParameter = useDebounce(valueQuestion, 500)
     const answerParameter = useDebounce(valueAnswer, 500)
+    //r-r-d
+    const {id} = useParams<{ id?: string }>()
 
     useEffect(() => {
         if (questionParameter !== null) {
@@ -26,7 +30,7 @@ const SearchC = () => {
     const profileId: null | string = useAppSelector(state => state.profile._id)
     const packUserId: string | null = useAppSelector(state => state.cards.packUserId)
     const isAddNewCard = profileId && packUserId && packUserId === profileId
-
+    //callbacks
     const onChangeInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         if (e.currentTarget.dataset.input) {
             const type: string = e.currentTarget.dataset.input
@@ -37,7 +41,9 @@ const SearchC = () => {
             }
         }
     }, [valueQuestion, valueAnswer])
-
+    const addNewCard = useCallback(() => {
+        id && dispatch(createCard(id))
+    }, [id])
 
     return (
         <div className={s.searchContainer}>
@@ -56,7 +62,11 @@ const SearchC = () => {
                 />
             </div>
             <button className={s.button}>Search</button>
-            {isAddNewCard && <button className={s.button}>Add new card</button>}
+            {isAddNewCard && <button className={s.button}
+                                     onClick={addNewCard}
+            >
+                Add new card
+            </button>}
         </div>
     );
 };

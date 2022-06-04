@@ -13,12 +13,12 @@ const HeaderTable = () => {
 
     useEffect(() => {
         update !== null && dispatch(setSortPacks(`${update}updated`))
-    },[update])
+    }, [update])
 
 
     //callbacks
     const changeLastUpdate = () => {
-        if (update !== null){
+        if (update !== null) {
             setUpdate(update === 0 ? 1 : 0)
         } else {
             setUpdate(1)
@@ -30,7 +30,11 @@ const HeaderTable = () => {
         <div className={s.headerContainer}>
             <div>Name</div>
             <div>Cards</div>
-            <div onClick={changeLastUpdate} style={{cursor: "pointer", textDecoration:"underline"}}>Last Updated {sort}</div>
+            <div onClick={changeLastUpdate}
+                 style={{cursor: "pointer", textDecoration: "underline"}}
+            >
+                Last Updated {sort}
+            </div>
             <div>Created by</div>
             <div>Actions</div>
         </div>

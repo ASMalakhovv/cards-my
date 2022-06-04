@@ -97,11 +97,23 @@ export const packApi = {
 }
 
 export const cardsAPI = {
-    getCards(cardsPack_id: string, queryParam?: QueryParamsGetCard):Promise<GetCards> {
+    getCards(cardsPack_id: string, queryParam?: QueryParamsGetCard): Promise<GetCards> {
         return instance
             .get<GetCards, AxiosResponse<GetCards>, QueryParamsGetCard>
-            ('/cards/card', {params: {...queryParam,cardsPack_id}})
+            ('/cards/card', {params: {...queryParam, cardsPack_id}})
             .then(res => res.data)
+    },
+    createCard(cardsPack_id: string) {
+        return instance
+            .post
+            ('/cards/card', {card: {cardsPack_id}})
+            .then(res => res)
+    },
+    deleteCard(id: string) {
+        return instance
+            .delete
+            ('/cards/card', {params: {id}})
+            .then(res => res)
     }
 }
 

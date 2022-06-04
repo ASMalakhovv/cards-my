@@ -21,6 +21,7 @@ const PackName = () => {
 
     //hooks
     useEffect(() => {
+        debugger
         id && dispatch(getCards(id))
     }, [id,settings])
 

@@ -6,6 +6,8 @@ import s from './TableCard.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../hooks/useReactRedux";
 import {CardType} from "../../../dal/api";
 import {setSettingCard} from "../settingsCard-reducer";
+import {useParams} from "react-router-dom";
+
 
 const TableCard = () => {
     //react-redux
@@ -13,6 +15,8 @@ const TableCard = () => {
     const cards: CardType[] = useAppSelector(state => state.cards.cards)
     const cardsTotalCount: number | null = useAppSelector(state => state.cards.cardsTotalCount)
     const page: number | null = useAppSelector(state => state.settingsCard.page)
+    //r-r-d
+    const {id} = useParams<{ id?: string }>()
 
     const tableCards = cards.map(c => <Card
         key={c._id}
@@ -20,6 +24,9 @@ const TableCard = () => {
         updated={c.updated}
         question={c.question}
         grade={c.grade}
+        id={c._id}
+        packID={id}
+        userID={c.user_id}
     />)
     //callbacks
     const setPage = (page: number) => {
