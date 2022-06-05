@@ -70,6 +70,17 @@ export const deleteCard = (cardID: string, cardsPack_id: string): AppThunk<void>
 
     }
 }
+export const updateQuestionCard = (idCard:string, cardsPack_id: string): AppThunk<void> => async (dispatch: AppThunkDispatch, getState: () => AppStoreType) => {
+    try {
+        await cardsAPI.updateQuestion(idCard)
+        const settings: SettingsCardState = getState().settingsCard
+        const trueSetting = trueQueryParamsCard(settings)
+        const res: GetCards = await cardsAPI.getCards(cardsPack_id, trueSetting)
+        res && dispatch(setCards(res))
+    } catch (e) {
+
+    }
+}
 
 
 //TYPES

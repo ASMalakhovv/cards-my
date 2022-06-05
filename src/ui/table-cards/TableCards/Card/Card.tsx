@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import s from './Card.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../../hooks/useReactRedux";
-import {deleteCard} from "../../packName-reducer";
+import {deleteCard, updateQuestionCard} from "../../packName-reducer";
 
 type PropsType = {
     question: string
@@ -10,10 +10,10 @@ type PropsType = {
     grade: number
     id: string
     packID: string | undefined
-    userID:string
+    userID: string
 }
 
-const Card = ({question, answer, updated, grade, id, packID,userID, ...props}: PropsType) => {
+const Card = ({question, answer, updated, grade, id, packID, userID, ...props}: PropsType) => {
     //react-redux
     const dispatch = useAppDispatch()
     const profileID = useAppSelector(state => state.profile._id)
@@ -23,6 +23,9 @@ const Card = ({question, answer, updated, grade, id, packID,userID, ...props}: P
     const deleteCardHandler = () => {
         packID && dispatch(deleteCard(id, packID))
     }
+    const changeQuestion = useCallback(() => {
+        packID && dispatch(updateQuestionCard(id, packID))
+    }, [])
 
     return (
         <div className={s.card}>
@@ -32,6 +35,9 @@ const Card = ({question, answer, updated, grade, id, packID,userID, ...props}: P
             <div className={s.grade}>{grade}</div>
             <div>
                 {isMyPack && <button onClick={deleteCardHandler}>delete</button>}
+            </div>
+            <div>
+                {isMyPack && <button onClick={changeQuestion}>Change</button>}
             </div>
         </div>
     );
