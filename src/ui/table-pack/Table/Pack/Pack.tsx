@@ -44,6 +44,7 @@ const Pack = ({name, cards, update, created, id, ...props}: PackPropsType) => {
                     <button>learn</button>
                 </div>
             }
+            
         </div>
     );
 };

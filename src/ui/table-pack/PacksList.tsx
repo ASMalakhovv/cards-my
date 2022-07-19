@@ -6,6 +6,8 @@ import {useAppDispatch, useAppSelector} from "../../hooks/useReactRedux";
 import {getPack} from "./packList-reducer";
 import { Navigate } from 'react-router-dom';
 import { path } from '../main/routes/Pages';
+import Modal from "../common/Modal/Modal";
+import {ModalLearn} from "../Modal/ModalLearn/ModalLearn";
 
 const PacksList = () => {
     //hooks
@@ -26,6 +28,9 @@ const PacksList = () => {
                 <div className={s.packsListContainer}>
                     <ShowPacksCards/>
                     <Table/>
+                    <Modal height={250} show={true} width={250}>
+                    <ModalLearn />
+                    </Modal>
                 </div>
             </div>
     );
