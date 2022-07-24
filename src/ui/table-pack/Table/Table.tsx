@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from "./Table.module.scss"
 import Search from "../SettingsPackTable/SearchPack/Search";
 import HeaderTable from "./HeaderTable/HeaderTable";
@@ -9,6 +9,7 @@ import {CardPack} from "../../../dal/api";
 import {setPagePacks} from "../SettingsPackTable/setting-reducer";
 
 const Table = () => {
+    const [isShowModal, setIsShowModal] = useState<boolean>(false)
 
     //react-redux
     const dispatch = useAppDispatch()

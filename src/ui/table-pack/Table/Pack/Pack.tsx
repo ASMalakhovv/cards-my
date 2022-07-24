@@ -3,7 +3,8 @@ import s from "./Pack.module.scss"
 import {useAppDispatch, useAppSelector} from "../../../../hooks/useReactRedux";
 import {deletePack, updatePack} from "../../packList-reducer";
 import {Link} from "react-router-dom";
-import { path } from '../../../main/routes/Pages';
+import {path} from '../../../main/routes/Pages';
+import {ModalQuestionContainer} from "../../../common/modal/ModalQuestion/ModalQuestionContainer";
 
 export type PackPropsType = {
     name: string | null
@@ -25,7 +26,12 @@ const Pack = ({name, cards, update, created, id, ...props}: PackPropsType) => {
     const updatePackHandler = () => {
       id && dispatch(updatePack(id))
     }
-
+    const childrenModalQuestion = ():JSX.Element => (
+        <p className={s.childrenModalQuestion}>
+            Вы действительно хотите удалить PackName - <span>{name}</span> <br/>
+            Все карточки будут удалены из этого учебного курса.
+        </p>
+    )
     return (
         <div className={s.packContainer}>
             <Link to={`${path.packName}/${id}`}>{name}</Link>
@@ -35,13 +41,21 @@ const Pack = ({name, cards, update, created, id, ...props}: PackPropsType) => {
             {userIdFromParameters
                 ?
                 <div>
-                    <button onClick={deletePackHandler}>delete</button>
+                    <ModalQuestionContainer
+                        nameButton='delete'
+                        children={childrenModalQuestion()}
+                        onClickYes={deletePackHandler}
+                    />
                     <button onClick={updatePackHandler}>edit</button>
                     <button>learn</button>
                 </div>
                 :
                 <div>
-                    <button>learn</button>
+                    <button
+                    disabled={cards === null || cards === 0}
+                    >
+                        learn
+                    </button>
                 </div>
             }
         </div>
@@ -49,3 +63,5 @@ const Pack = ({name, cards, update, created, id, ...props}: PackPropsType) => {
 };
 
 export default Pack;
+
+
