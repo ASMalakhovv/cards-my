@@ -66,17 +66,15 @@ export const Modal: React.FC<Modal> = (
                     alignItems: 'center',
                     justifyContent: 'center',
 
-                    background: 'lime',
+                    background: 'lightblue',
                     zIndex: 21,
 
                     ...modalStyle,
                 }}
-                onClick={modalOnClick}
+                 onClick={modalOnClick}
             >
                 {children}
             </div>
         </>
     );
 };
-
-export default Modal;
